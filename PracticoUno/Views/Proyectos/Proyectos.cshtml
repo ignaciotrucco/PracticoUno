@@ -1,0 +1,74 @@
+@{
+    ViewData["Title"] = "Proyectos";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Todos los proyectos</h1>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#proyectosModal" onclick="NuevoProyecto()">
+    Nuevo Proyecto
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="proyectosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloModal"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="ProyectoID" value="0">
+
+                    <label for="NombreProyecto" class="form-label">Nombre del proyecto</label>
+                    <input type="text" id="NombreProyecto" class="form-control">
+
+                    <label for="DescripcionProyecto" class="form-label">Descripcion</label>
+                    <input type="text" id="DescripcionProyecto" class="form-control">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="FechaInicio" class="form-label">Fecha de inicio</label>
+                            <input type="datetime-local" id="FechaInicio" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="FechaFin" class="form-label">Fecha de fin</label>
+                            <input type="datetime-local" id="FechaFin" class="form-control">
+                        </div>
+                    </div>
+                    <label for="Presupuesto" class="form-label">Presupuesto</label>
+                    <input type="text" id="Presupuesto" class="form-control">
+
+                    <label for="Estado" class="form-label">Estado</label>
+                    @Html.DropDownList("Estado", null, htmlAttributes: new { @class = "form-control" })
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="LimpiarModal()">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="GuardarDatos()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de fin</th>
+            <th>Presupuesto</th>
+            <th>Estado</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody id="tbody-proyectos"></tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/proyectos.js"></script>
+}
